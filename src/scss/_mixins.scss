@@ -20,3 +20,20 @@
     cursor: pointer;
   }
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin clear-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin transition ($property: all) {
+  transition: $property 0.4s ease-in-out;
+}
+
