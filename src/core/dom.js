@@ -21,8 +21,8 @@ class Dom {
     return this;
   }
 
-  on() {
-
+  on(eventType, callback) {
+    this.$nativeElement.addEventListener(eventType, callback);
   }
 
   append(node) {
