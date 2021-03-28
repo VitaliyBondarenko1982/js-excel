@@ -17,13 +17,22 @@ export class DomListener {
           Method ${method} is not implemented in ${this.name || ''} Component`;
         throw new Error(errorMessage);
       }
-
-      this.$root.on(listener, this[method].bind(this));
+      this[method] = this[method].bind(this);
+      this.$root.on(listener, this[method]);
     });
   }
 
   removeDOMListeners() {
+    this.$listeners.forEach((listener) => {
+      const method = getMethodName(listener);
+      if (!this[method]) {
+        const errorMessage = `
+          Method ${method} is not implemented in ${this.name || ''} Component`;
+        throw new Error(errorMessage);
+      }
 
+      this.$root.remove(listener, this[method]);
+    });
   }
 }
 
