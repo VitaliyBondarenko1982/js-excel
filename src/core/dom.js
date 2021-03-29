@@ -42,6 +42,14 @@ class Dom {
 
     return this;
   }
+
+  closest(selector) {
+    return $(this.$nativeElement.closest(selector));
+  }
+
+  getCoords() {
+    return this.$nativeElement.getBoundingClientRect();
+  }
 }
 
 export function $(selector) {

@@ -8,13 +8,24 @@ const toCell = () => {
 };
 
 const toColumn = (col) => {
-  return `<div class="column">${col}</div>`;
+  return `
+    <div class="column" data-type="resizable">
+      ${col}
+      <div class="col-resize" data-resize="col"></div>
+    </div>
+  `;
 };
 
 const createRow = (content, index = '') => {
+  const resizer = index
+    ? `<div class="row-resize" data-resize="row"></div>`
+    : '';
   return `
     <div class="row">
-      <div class="row-info">${index}</div>
+      <div class="row-info">
+        ${index}
+        ${resizer}
+      </div>  
       <div class="row-data">${content}</div>
     </div>
   `;
