@@ -42,6 +42,32 @@ class Dom {
 
     return this;
   }
+
+  get data() {
+    return this.$nativeElement.dataset;
+  }
+
+  closest(selector) {
+    return $(this.$nativeElement.closest(selector));
+  }
+
+  getCoords() {
+    return this.$nativeElement.getBoundingClientRect();
+  }
+
+  findAll(selector) {
+    return this.$nativeElement.querySelectorAll(selector);
+  }
+
+  css(styles = {}) {
+    Object.keys(styles).forEach((key) => {
+      this.$nativeElement.style[key] = styles[key];
+    });
+  }
+
+  cssClear(props) {
+    props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
+  }
 }
 
 export function $(selector) {
