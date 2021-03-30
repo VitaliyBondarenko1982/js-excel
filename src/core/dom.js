@@ -64,6 +64,10 @@ class Dom {
       this.$nativeElement.style[key] = styles[key];
     });
   }
+
+  cssClear(props) {
+    props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
+  }
 }
 
 export function $(selector) {
