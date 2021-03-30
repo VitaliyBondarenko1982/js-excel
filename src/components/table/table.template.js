@@ -3,13 +3,13 @@ const CODES = {
   Z: 90,
 };
 
-const toCell = () => {
-  return `<div class="cell" contenteditable></div>`;
+const toCell = (_, index) => {
+  return `<div class="cell" contenteditable data-col="${index}"></div>`;
 };
 
-const toColumn = (col) => {
+const toColumn = (col, index) => {
   return `
-    <div class="column" data-type="resizable">
+    <div class="column" data-type="resizable" data-col="${index}">
       ${col}
       <div class="col-resize" data-resize="col"></div>
     </div>
@@ -21,7 +21,7 @@ const createRow = (content, index = '') => {
     ? `<div class="row-resize" data-resize="row"></div>`
     : '';
   return `
-    <div class="row">
+    <div class="row" data-type="resizable">
       <div class="row-info">
         ${index}
         ${resizer}
