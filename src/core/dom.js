@@ -25,8 +25,12 @@ class Dom {
     this.$nativeElement.addEventListener(eventType, callback);
   }
 
-  remove(eventType, callback) {
+  off(eventType, callback) {
     this.$nativeElement.removeEventListener(eventType, callback);
+  }
+
+  find(selector) {
+    return $(this.$nativeElement.querySelector(selector));
   }
 
   append(node) {
@@ -67,6 +71,14 @@ class Dom {
 
   cssClear(props) {
     props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
+  }
+
+  addClass(className) {
+    this.$nativeElement.classList.add(className);
+  }
+
+  removeClass(className) {
+    this.$nativeElement.classList.remove(className);
   }
 }
 
