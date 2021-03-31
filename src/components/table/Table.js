@@ -16,6 +16,12 @@ export class Table extends ExcelComponent {
     return createTable(1000);
   }
 
+  init() {
+    super.init();
+
+    this.selection = new TableSelection();
+  }
+
   onMousedown(event) {
     if (shouldResize(event)) {
       resizeHandler(this.$root, event);
