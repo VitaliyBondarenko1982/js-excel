@@ -15,6 +15,19 @@ class Dom {
     return this.$nativeElement.outerHTML.trim();
   }
 
+  text(text) {
+    if (typeof text === 'string') {
+      this.$nativeElement.textContent = text;
+      return this;
+    }
+
+    if (this.$nativeElement.tagName.toLowerCase() === 'input') {
+      return this.$nativeElement.value.trim();
+    }
+
+    return this.$nativeElement.textContent.trim();
+  }
+
   clear() {
     this.html('');
 
@@ -25,8 +38,12 @@ class Dom {
     this.$nativeElement.addEventListener(eventType, callback);
   }
 
-  remove(eventType, callback) {
+  off(eventType, callback) {
     this.$nativeElement.removeEventListener(eventType, callback);
+  }
+
+  find(selector) {
+    return $(this.$nativeElement.querySelector(selector));
   }
 
   append(node) {
@@ -67,6 +84,32 @@ class Dom {
 
   cssClear(props) {
     props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
+  }
+
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':');
+      return {
+        row: Number(parsed[0]),
+        col: Number(parsed[1]),
+      };
+    }
+    return this.data.id;
+  }
+
+  focus() {
+    this.$nativeElement.focus();
+    return this;
+  }
+
+  addClass(className) {
+    this.$nativeElement.classList.add(className);
+    return this;
+  }
+
+  removeClass(className) {
+    this.$nativeElement.classList.remove(className);
+    return this;
   }
 }
 

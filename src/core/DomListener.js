@@ -31,7 +31,7 @@ export class DomListener {
         throw new Error(errorMessage);
       }
 
-      this.$root.remove(listener, this[method]);
+      this.$root.off(listener, this[method]);
     });
   }
 }
