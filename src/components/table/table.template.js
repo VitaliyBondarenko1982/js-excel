@@ -3,7 +3,8 @@ const CODES = {
   Z: 90,
 };
 
-const toCell = (row, col) => {
+const toCell = (row, index) => {
+  const col = index + 1;
   return `
     <div
       class="cell"
@@ -17,7 +18,7 @@ const toCell = (row, col) => {
 
 const toColumn = (col, index) => {
   return `
-    <div class="column" data-type="resizable" data-col="${index}">
+    <div class="column" data-type="resizable" data-col="${index + 1}">
       ${col}
       <div class="col-resize" data-resize="col"></div>
     </div>

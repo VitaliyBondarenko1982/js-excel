@@ -73,6 +73,22 @@ class Dom {
     props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
   }
 
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':');
+      return {
+        row: Number(parsed[0]),
+        col: Number(parsed[1]),
+      };
+    }
+    return this.data.id;
+  }
+
+  focus() {
+    this.$nativeElement.focus();
+    return this;
+  }
+
   addClass(className) {
     this.$nativeElement.classList.add(className);
   }
