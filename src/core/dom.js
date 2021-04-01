@@ -15,6 +15,10 @@ class Dom {
     return this.$nativeElement.outerHTML.trim();
   }
 
+  text(text) {
+    this.$nativeElement.textContent = text;
+  }
+
   clear() {
     this.html('');
 
