@@ -16,7 +16,16 @@ class Dom {
   }
 
   text(text) {
-    this.$nativeElement.textContent = text;
+    if (typeof text === 'string') {
+      this.$nativeElement.textContent = text;
+      return this;
+    }
+
+    if (this.$nativeElement.tagName.toLowerCase() === 'input') {
+      return this.$nativeElement.value.trim();
+    }
+
+    return this.$nativeElement.textContent.trim();
   }
 
   clear() {
