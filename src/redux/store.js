@@ -6,6 +6,8 @@ import {rootReducer} from './rootReducer';
 export const defaultState = {
   colState: {},
   rowState: {},
+  dataState: {},
+  currentText: '',
 };
 
 const initialState = storage(storageKeys.excelState) || defaultState;

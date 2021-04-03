@@ -1,20 +1,30 @@
 import {types} from './actionTypes';
 import {excelConfig} from '../core/constants';
 
-export function rootReducer(state, action) {
-  switch (action.type) {
+export function rootReducer(state, {type, payload}) {
+  console.log({type, payload});
+  switch (type) {
     case types.TABLE_RESIZE:
-      return action.data.type === excelConfig.COL ? {
+      return payload.type === excelConfig.COL ? {
         ...state,
         colState: {
           ...state.colState,
-          [action.data.id]: action.data.value,
+          [payload.id]: payload.value,
         },
       } : {
         ...state,
         rowState: {
           ...state.rowState,
-          [action.data.id]: action.data.value,
+          [payload.id]: payload.value,
+        },
+      };
+    case types.CHANGE_TEXT:
+      return {
+        ...state,
+        currentText: payload.value,
+        dataState: {
+          ...state.dataState,
+          [payload.id]: payload.value,
         },
       };
     default:
