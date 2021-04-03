@@ -6,12 +6,9 @@ import {Header} from './components/header/Header';
 import {Toolbar} from './components/toolbar/Toolbar';
 import {Formula} from './components/formula/Formula';
 import {Table} from './components/table/Table';
-import {rootReducer} from './redux/rootReducer';
-import {createStore} from './core/createStore';
 import {storage} from './core/utils';
 import {storageKeys} from './core/constants';
-
-const store = createStore(rootReducer, storage(storageKeys.excelState));
+import {store} from './redux/store';
 
 store.subscribe((state) => {
   console.log('App State:', state);

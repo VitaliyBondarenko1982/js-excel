@@ -9,4 +9,7 @@ export const charCodes = {
 
 export const excelConfig = {
   DEFAULT_WIDTH: 120,
+  DEFAULT_HEIGHT: 24,
+  ROW: 'row',
+  COL: 'col',
 };

@@ -4,9 +4,13 @@ const getWidth = (state, index) => {
   return `${state[index + 1] || excelConfig.DEFAULT_WIDTH}px`;
 };
 
+const getHeight = (state, index) => {
+  return `${state[index] || excelConfig.DEFAULT_HEIGHT}px`;
+};
+
 const toCell = (state, row) => {
   return (_, index) => {
-    const width = getWidth(state.colState, index);
+    const width = getWidth(state, index);
     const col = index + 1;
     return `
       <div
@@ -35,12 +39,18 @@ const toColumn = ({col, index, width}) => {
   `;
 };
 
-const createRow = (content, index = '') => {
+const createRow = (content, index = '', state = {}) => {
   const resizer = index
     ? `<div class="row-resize" data-resize="row"></div>`
     : '';
+  const height = getHeight(state, index);
   return `
-    <div class="row" data-type="resizable">
+    <div 
+      class="row" 
+      data-type="resizable" 
+      data-row="${index}"
+      style="height: ${height}"
+     >
       <div class="row-info">
         ${index}
         ${resizer}
@@ -59,7 +69,7 @@ const withWidthFrom = (state) => {
     return {
       col,
       index,
-      width: getWidth(state.colState, index),
+      width: getWidth(state, index),
     };
   };
 };
@@ -69,7 +79,7 @@ export const createTable = (rowsCount = 15, state = {}) => {
   const cols = new Array(colsCount)
       .fill('')
       .map(toChar)
-      .map(withWidthFrom(state))
+      .map(withWidthFrom(state.colState))
       .map(toColumn)
       .join('');
 
@@ -80,9 +90,9 @@ export const createTable = (rowsCount = 15, state = {}) => {
   for (let row = 1; row <= rowsCount; row++) {
     const cells = new Array(colsCount)
         .fill('')
-        .map(toCell(state, row))
+        .map(toCell(state.colState, row))
         .join('');
-    rows.push(createRow(cells, row));
+    rows.push(createRow(cells, row, state.rowState));
   }
 
   return rows.join('');

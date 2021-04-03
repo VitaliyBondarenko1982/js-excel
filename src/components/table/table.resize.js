@@ -1,4 +1,5 @@
 import {$} from '../../core/dom';
+import {excelConfig} from '../../core/constants';
 
 export const resizeHandler = ($root, event) => {
   return new Promise((resolve) => {
@@ -6,7 +7,7 @@ export const resizeHandler = ($root, event) => {
     const $parent = $resizer.closest('[data-type="resizable"]');
     const coords = $parent.getCoords();
     const type = $resizer.data.resize;
-    const sideProp = type === 'col' ? 'bottom' : 'right';
+    const sideProp = type === excelConfig.COL ? 'bottom' : 'right';
     let value;
 
     $resizer.css({
@@ -15,7 +16,7 @@ export const resizeHandler = ($root, event) => {
     });
 
     document.onmousemove = (e) => {
-      if (type === 'col') {
+      if (type === excelConfig.COL) {
         const delta = e.pageX - coords.right;
         value = coords.width + delta;
         $resizer.css({right: `${-delta}px`});
@@ -28,7 +29,7 @@ export const resizeHandler = ($root, event) => {
 
     document.onmouseup = () => {
       document.onmousemove = null;
-      if (type === 'col') {
+      if (type === excelConfig.COL) {
         $parent.css({
           width: `${value}px`,
         });
@@ -41,9 +42,11 @@ export const resizeHandler = ($root, event) => {
         });
       }
 
+      console.log($parent.data[type]);
       resolve({
         value,
-        id: type === 'col' ? $parent.data.col : null,
+        type,
+        id: $parent.data[type],
       });
 
       $resizer.cssClear([
