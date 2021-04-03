@@ -8,9 +8,14 @@ import {Formula} from './components/formula/Formula';
 import {Table} from './components/table/Table';
 import {rootReducer} from './redux/rootReducer';
 import {createStore} from './core/createStore';
+import {storage} from './core/utils';
+import {storageKeys} from './core/constants';
 
-const store = createStore(rootReducer, {
-  tableTitle: 'My Table',
+const store = createStore(rootReducer, storage(storageKeys.excelState));
+
+store.subscribe((state) => {
+  console.log('App State:', state);
+  storage(storageKeys.excelState, state);
 });
 
 const excel = new Excel('#app', {
