@@ -86,6 +86,13 @@ class Dom {
     props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
   }
 
+  getStyles(styles = []) {
+    return styles.reduce((result, style) => {
+      result[style] = this.$nativeElement.style[style];
+      return result;
+    }, {});
+  }
+
   id(parse) {
     if (parse) {
       const parsed = this.id().split(':');

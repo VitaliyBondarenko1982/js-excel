@@ -42,7 +42,6 @@ export const resizeHandler = ($root, event) => {
         });
       }
 
-      console.log($parent.data[type]);
       resolve({
         value,
         type,

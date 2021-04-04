@@ -13,3 +13,31 @@ export const excelConfig = {
   ROW: 'row',
   COL: 'col',
 };
+
+export const subscribeField = {
+  colState: 'colState',
+  rowState: 'rowState',
+  dataState: 'dataState',
+  currentText: 'currentText',
+};
+
+export const listeners = {
+  click: 'click',
+  input: 'input',
+  keydown: 'keydown',
+  mousedown: 'mousedown',
+};
+
+export const styles = {
+  fontWeight: 'fontWeight',
+  fontStyle: 'fontStyle',
+  textAlign: 'textAlign',
+  textDecoration: 'textDecoration',
+};
+
+export const defaultStyles = {
+  textAlign: 'left',
+  fontWeight: 'normal',
+  textDecoration: 'none',
+  fontStyle: 'normal',
+};

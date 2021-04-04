@@ -2,7 +2,6 @@ import {types} from './actionTypes';
 import {excelConfig} from '../core/constants';
 
 export function rootReducer(state, {type, payload}) {
-  console.log({type, payload});
   switch (type) {
     case types.TABLE_RESIZE:
       return payload.type === excelConfig.COL ? {
