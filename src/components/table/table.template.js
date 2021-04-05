@@ -82,7 +82,6 @@ const withWidthFrom = (state) => {
 };
 
 export const createTable = (rowsCount = 15, state = {}) => {
-  console.log(state);
   const colsCount = charCodes.Z - charCodes.A + 1;
   const cols = new Array(colsCount)
       .fill('')
