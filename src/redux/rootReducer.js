@@ -38,6 +38,11 @@ export function rootReducer(state, {type, payload}) {
         ...state,
         currentStyles: payload,
       };
+    case types.CHANGE_TITLE:
+      return {
+        ...state,
+        title: payload,
+      };
     default:
       return state;
   }

@@ -1,9 +1,10 @@
 import {storage} from '../core/utils';
-import {defaultStyles, storageKeys} from '../core/constants';
+import {defaultStyles, storageKeys, excelConfig} from '../core/constants';
 import {createStore} from '../core/createStore';
 import {rootReducer} from './rootReducer';
 
 export const defaultState = {
+  title: excelConfig.DEFAULT_TITLE,
   colState: {},
   rowState: {},
   dataState: {},
@@ -14,8 +15,7 @@ export const defaultState = {
 
 const normalize = (state) => ({
   ...state,
-  currentStyles: defaultStyles,
-  currentText: '',
+  ...defaultState,
 });
 
 const initialState = normalize(storage(storageKeys.excelState)) || defaultState;

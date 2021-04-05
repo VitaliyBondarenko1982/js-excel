@@ -12,6 +12,7 @@ export const excelConfig = {
   DEFAULT_HEIGHT: 24,
   ROW: 'row',
   COL: 'col',
+  DEFAULT_TITLE: 'New spreadsheet',
 };
 
 export const subscribeField = {

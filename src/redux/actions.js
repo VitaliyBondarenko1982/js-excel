@@ -19,3 +19,9 @@ export const applyStyle = (data) => ({
   type: types.APPLY_STYLE,
   payload: data,
 });
+
+export const changeTitle = (data) => ({
+  type: types.CHANGE_TITLE,
+  payload: data,
+});
+

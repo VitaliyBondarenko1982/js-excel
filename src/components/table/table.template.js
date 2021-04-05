@@ -1,4 +1,4 @@
-import {charCodes, excelConfig} from '../../core/constants';
+import {charCodes, defaultStyles, excelConfig} from '../../core/constants';
 import {toInlineStyles} from '../../core/utils';
 
 const getWidth = (state, index) => {
@@ -15,7 +15,10 @@ const toCell = (state, row) => {
     const col = index + 1;
     const id = `${row}:${col}`;
     const data = state.dataState[id];
-    const styles = toInlineStyles(state.stylesState[id]);
+    const styles = toInlineStyles({
+      ...defaultStyles,
+      ...state.stylesState[id],
+    });
     return `
       <div
         class="cell"
@@ -79,6 +82,7 @@ const withWidthFrom = (state) => {
 };
 
 export const createTable = (rowsCount = 15, state = {}) => {
+  console.log(state);
   const colsCount = charCodes.Z - charCodes.A + 1;
   const cols = new Array(colsCount)
       .fill('')
