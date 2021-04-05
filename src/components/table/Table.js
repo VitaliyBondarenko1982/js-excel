@@ -6,6 +6,7 @@ import {TableSelection} from './TableSelection';
 import {$} from '../../core/dom';
 import * as actions from '../../redux/actions';
 import {defaultStyles, listeners} from '../../core/constants';
+import {parse} from '../../core/parse';
 
 const {mousedown, input, keydown} = listeners;
 
@@ -34,7 +35,10 @@ export class Table extends ExcelComponent {
     this.selectCell($cell);
 
     this.$on('formula:input', (text) => {
-      this.selection.current.text(text);
+      console.log({text});
+      this.selection.current
+          .attr('data-value', text)
+          .text(parse(text));
       this.updateTextInStore(text);
     });
 

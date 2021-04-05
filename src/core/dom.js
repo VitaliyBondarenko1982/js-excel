@@ -16,7 +16,7 @@ class Dom {
   }
 
   text(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.$nativeElement.textContent = text;
       return this;
     }
@@ -107,6 +107,15 @@ class Dom {
   focus() {
     this.$nativeElement.focus();
     return this;
+  }
+
+  attr(name, value) {
+    if (value) {
+      this.$nativeElement.setAttribute(name, value);
+      return this;
+    }
+
+    return this.$nativeElement.getAttribute(name);
   }
 
   addClass(className) {
