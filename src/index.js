@@ -11,6 +11,7 @@ import {storageKeys} from './core/constants';
 import {store} from './redux/store';
 
 store.subscribe((state) => {
+  console.log('App state:', state);
   storage(storageKeys.excelState, state);
 });
 

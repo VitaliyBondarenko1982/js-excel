@@ -19,6 +19,8 @@ export const subscribeField = {
   rowState: 'rowState',
   dataState: 'dataState',
   currentText: 'currentText',
+  currentStyles: 'currentStyles',
+  stylesState: 'stylesState',
 };
 
 export const listeners = {

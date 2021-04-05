@@ -1,4 +1,5 @@
 import {charCodes, excelConfig} from '../../core/constants';
+import {toInlineStyles} from '../../core/utils';
 
 const getWidth = (state, index) => {
   return `${state[index + 1] || excelConfig.DEFAULT_WIDTH}px`;
@@ -14,6 +15,7 @@ const toCell = (state, row) => {
     const col = index + 1;
     const id = `${row}:${col}`;
     const data = state.dataState[id];
+    const styles = toInlineStyles(state.stylesState[id]);
     return `
       <div
         class="cell"
@@ -21,7 +23,7 @@ const toCell = (state, row) => {
         data-type="cell"
         data-col="${col}"
         data-id="${id}"
-        style="width: ${width}"
+        style="${styles}; width: ${width}"
       >${data || ''}</div>
     `;
   };
