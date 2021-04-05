@@ -16,7 +16,7 @@ class Dom {
   }
 
   text(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.$nativeElement.textContent = text;
       return this;
     }
@@ -86,6 +86,13 @@ class Dom {
     props.forEach((prop) => this.$nativeElement.style.removeProperty(prop));
   }
 
+  getStyles(styles = []) {
+    return styles.reduce((result, style) => {
+      result[style] = this.$nativeElement.style[style];
+      return result;
+    }, {});
+  }
+
   id(parse) {
     if (parse) {
       const parsed = this.id().split(':');
@@ -100,6 +107,15 @@ class Dom {
   focus() {
     this.$nativeElement.focus();
     return this;
+  }
+
+  attr(name, value) {
+    if (value) {
+      this.$nativeElement.setAttribute(name, value);
+      return this;
+    }
+
+    return this.$nativeElement.getAttribute(name);
   }
 
   addClass(className) {
