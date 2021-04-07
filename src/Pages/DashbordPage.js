@@ -5,7 +5,6 @@ import {createRecordsTable} from './dashboard.functions';
 export class DashboardPage extends Page {
   getRoot() {
     const now = Date.now().toString();
-    console.log(now);
     return $.create('div', 'db').html(`
        <div class="db__header">
       <h1>Excel Dashboard</h1>

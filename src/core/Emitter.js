@@ -24,23 +24,3 @@ export class Emitter {
     };
   }
 }
-
-
-// example
-// const emitter = new Emitter();
-//
-// const unsubscribe = emitter
-//     .subscribe('vitalii', (data) => console.log('Sub', data));
-// emitter.emit('vitalii', 42);
-//
-// setTimeout(() => {
-//   emitter.emit('vitalii', 'After 2 seconds');
-// }, 2000);
-//
-// setTimeout(() => {
-//   unsubscribe();
-// }, 3000);
-//
-// setTimeout(() => {
-//   emitter.emit('vitalii', 'After 4 seconds');
-// }, 4000);
