@@ -53,10 +53,6 @@ export class Table extends ExcelComponent {
         ids: this.selection.selectedIds,
       }));
     });
-
-    // this.$subscribe((state) => {
-    //   console.log('TableState', state);
-    // });
   }
 
   selectCell($cell) {

@@ -43,6 +43,11 @@ export function rootReducer(state, {type, payload}) {
         ...state,
         title: payload,
       };
+    case types.UPDATE_DATE:
+      return {
+        ...state,
+        openedDate: new Date().toJSON(),
+      };
     default:
       return state;
   }

@@ -1,7 +1,4 @@
-import {storage} from '../core/utils';
-import {defaultStyles, storageKeys, excelConfig} from '../core/constants';
-import {createStore} from '../core/createStore';
-import {rootReducer} from './rootReducer';
+import {defaultStyles, excelConfig} from '../core/constants';
 
 export const defaultState = {
   title: excelConfig.DEFAULT_TITLE,
@@ -11,16 +8,14 @@ export const defaultState = {
   stylesState: {},
   currentText: '',
   currentStyles: defaultStyles,
+  openedDate: new Date().toJSON(),
 };
 
 const normalize = (state) => ({
-  ...state,
   ...defaultState,
+  ...state,
 });
 
-const initialState = normalize(storage(storageKeys.excelState)) || defaultState;
-
-export const store = createStore(
-    rootReducer,
-    initialState,
-);
+export const normalizeInitialState = (state) => {
+  return state ? normalize(state) : defaultState;
+};
