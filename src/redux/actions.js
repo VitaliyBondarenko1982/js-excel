@@ -25,3 +25,7 @@ export const changeTitle = (data) => ({
   payload: data,
 });
 
+export const updateDate = () => ({
+  type: types.UPDATE_DATE,
+});
+
